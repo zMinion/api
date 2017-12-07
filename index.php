@@ -19,8 +19,24 @@ $pdo = new PDO($dbmethod.$dbname, $dbuser, $dbpass);
 $db  = new NotORM($pdo);
 $app = new App();
 
-$app->get('/', function() {
-	echo "API IMSOTEC";
+$container = $app->getContainer();
+
+$container['view'] = function ($container) {
+    $templates = __DIR__ . '/templates/';
+    //$cache = __DIR__ . '/tmp/views/';
+    $cache = false;
+    $view = new Slim\Views\Twig($templates, compact('cache'));
+    return $view;
+};
+
+
+$app->get('/', function ($request, $response) {
+    
+    $templateVariables = [
+        "name" => "Andrei"
+    ];
+        
+    return $this->view->render($response, 'index.twig', $templateVariables);
 });
 
 // Listeaza toate cuvintele
