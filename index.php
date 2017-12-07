@@ -23,7 +23,6 @@ $app->get('/', function() {
 	echo "API IMSOTEC";
 });
 
-
 // Listeaza toate cuvintele
 $app->get('/words', function($request, $response, $args) use($app, $db) {
 	$rezultat["error"] = false;
