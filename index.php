@@ -26,8 +26,8 @@ $app->get('/', function() {
 
 // Listeaza toate cuvintele
 $app->get('/words', function($request, $response, $args) use($app, $db) {
-	$dosen["error"] = false;
-	$dosen["message"] = "Listare integrala a cuvintelor";
+	$rezultat["error"] = false;
+	$rezultat["message"] = "Listare integrala a cuvintelor";
 	foreach ($db->words() as $data) {
 		$rezultat["words"][] = array(
 			'id' => $data['id'],
